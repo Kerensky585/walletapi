@@ -55,11 +55,6 @@ func postCreditAccount(c *gin.Context) {
 	logrus.Info(debitReqText)
 
 	var updateBal updateBal
-	var wid = updateBal.WID
-	var amount = updateBal.Amount
-
-	//debit specific account, use a get call or service layer here really!!!!
-	logrus.Info("Credit request on wallet Id: " + wid)
 
 	// Call BindJSON to bind the received JSON to
 	// wallet
@@ -67,6 +62,12 @@ func postCreditAccount(c *gin.Context) {
 		//loggerWrite.Error("Format of JSON data is incorrect...some more meaningfull stuff here...")
 		return
 	}
+
+	var wid = updateBal.WID
+	var amount = updateBal.Amount
+
+	//debit specific account, use a get call or service layer here really!!!!
+	logrus.Info("Credit request on wallet Id: " + wid)
 
 	creditDbWallet(wid, amount)
 	c.SecureJSON(http.StatusCreated, updateBal)
@@ -78,11 +79,6 @@ func postDebitAccount(c *gin.Context) {
 	logrus.Info(debitReqText)
 
 	var updateBal updateBal
-	var wid = updateBal.WID
-	var amount = updateBal.Amount
-
-	//debit specific account, use a get call or service layer here really!!!!
-	logrus.Info("Debit request on wallet Id: " + wid)
 
 	// Call BindJSON to bind the received JSON to
 	// wallet
@@ -90,6 +86,12 @@ func postDebitAccount(c *gin.Context) {
 		//loggerWrite.Error("Format of JSON data is incorrect / or invalid request error etc. here...")
 		return
 	}
+
+	var wid = updateBal.WID
+	var amount = updateBal.Amount
+
+	//debit specific account, use a get call or service layer here really!!!!
+	logrus.Info("Debit request on wallet Id: " + wid)
 
 	debitDbWallet(wid, amount)
 	c.SecureJSON(http.StatusCreated, updateBal)
