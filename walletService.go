@@ -52,7 +52,7 @@ func InitEndPoints() (success bool) {
 func postCreditAccount(c *gin.Context) {
 
 	//log to to file, just example simple way to do it, could, haev file and terminal, switched fro verbos etc.
-	logrus.Info(debitReqText)
+	logrus.Info(creditReqText)
 
 	var updateBal updateBal
 
@@ -103,13 +103,13 @@ func getWalletBalance(c *gin.Context) {
 
 	balance := getDbWalletBalance(wid)
 
+	logrus.Info(balanceReqText + wid + "Balance: " + balance.String())
+
 	//TODO: mm bit hacky but can can think of a better check later
 	if !balance.IsNegative() {
 		c.SecureJSON(http.StatusOK, balance)
 		return
 	}
-
-	logrus.Info(balanceReqText + wid + "Balance: " + balance.String())
 
 	c.SecureJSON(http.StatusNotFound, gin.H{"message": "wallet with " + wid + " not found!"})
 
