@@ -51,13 +51,15 @@ func InitEndPoints() (success bool) {
 // Request balance to be credited with amount in DB for wallet ID
 func postCreditAccount(c *gin.Context) {
 
-	//log to terminal and to file, just example simple way to do it
-	//loggerWrite.Info(DebitReqText)
+	//log to to file, just example simple way to do it, could, haev file and terminal, switched fro verbos etc.
+	log.Info(debitReqText)
 
 	var updateBal updateBal
+	var wid = updateBal.WID
+	var amount = updateBal.Amount
 
 	//debit specific account, use a get call or service layer here really!!!!
-	//loggerWrite.Info("Credit request on wallet Id: ......")
+	log.Info("Credit request on wallet Id: " + wid)
 
 	// Call BindJSON to bind the received JSON to
 	// wallet
@@ -66,9 +68,6 @@ func postCreditAccount(c *gin.Context) {
 		return
 	}
 
-	var wid = updateBal.WID
-	var amount = updateBal.Amount
-
 	creditDbWallet(wid, amount)
 	c.SecureJSON(http.StatusCreated, updateBal)
 }
@@ -76,12 +75,14 @@ func postCreditAccount(c *gin.Context) {
 // Request balance to be debited in DB for wallet ID
 func postDebitAccount(c *gin.Context) {
 
-	//loggerWrite.Info(DebitReqText)
+	log.Info(debitReqText)
 
 	var updateBal updateBal
+	var wid = updateBal.WID
+	var amount = updateBal.Amount
 
 	//debit specific account, use a get call or service layer here really!!!!
-	//loggerWrite.Info("Debit request on wallet Id: ......")
+	log.Info("Debit request on wallet Id: " + wid)
 
 	// Call BindJSON to bind the received JSON to
 	// wallet
@@ -89,9 +90,6 @@ func postDebitAccount(c *gin.Context) {
 		//loggerWrite.Error("Format of JSON data is incorrect / or invalid request error etc. here...")
 		return
 	}
-
-	var wid = updateBal.WID
-	var amount = updateBal.Amount
 
 	debitDbWallet(wid, amount)
 	c.SecureJSON(http.StatusCreated, updateBal)
