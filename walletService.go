@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -21,8 +21,8 @@ var (
 // Initialise end point routes
 func InitEndPoints() (success bool) {
 
-	log.SetOutput(logOutFile)
-	log.SetLevel(log.DebugLevel)
+	logrus.SetOutput(logOutFile)
+	logrus.SetLevel(logrus.DebugLevel)
 
 	Router = gin.Default()
 
@@ -36,10 +36,10 @@ func InitEndPoints() (success bool) {
 
 	//In production we would allow specifying the log file and path via settings, this is for simplicity here
 	if loggerError != nil {
-		log.Fatal("Unable to open transactions log file.")
+		logrus.Fatal("Unable to open transactions log file.")
 		os.Exit(1) // or hanlde some other way if we want restart logic or someting instead...??
 	} else {
-		log.Info("Endpoints have been initialised, ready for connections.")
+		logrus.Info("Endpoints have been initialised, ready for connections.")
 		endPointsInitialised = true
 	}
 
@@ -52,14 +52,14 @@ func InitEndPoints() (success bool) {
 func postCreditAccount(c *gin.Context) {
 
 	//log to to file, just example simple way to do it, could, haev file and terminal, switched fro verbos etc.
-	log.Info(debitReqText)
+	logrus.Info(debitReqText)
 
 	var updateBal updateBal
 	var wid = updateBal.WID
 	var amount = updateBal.Amount
 
 	//debit specific account, use a get call or service layer here really!!!!
-	log.Info("Credit request on wallet Id: " + wid)
+	logrus.Info("Credit request on wallet Id: " + wid)
 
 	// Call BindJSON to bind the received JSON to
 	// wallet
@@ -75,14 +75,14 @@ func postCreditAccount(c *gin.Context) {
 // Request balance to be debited in DB for wallet ID
 func postDebitAccount(c *gin.Context) {
 
-	log.Info(debitReqText)
+	logrus.Info(debitReqText)
 
 	var updateBal updateBal
 	var wid = updateBal.WID
 	var amount = updateBal.Amount
 
 	//debit specific account, use a get call or service layer here really!!!!
-	log.Info("Debit request on wallet Id: " + wid)
+	logrus.Info("Debit request on wallet Id: " + wid)
 
 	// Call BindJSON to bind the received JSON to
 	// wallet
@@ -99,7 +99,7 @@ func postDebitAccount(c *gin.Context) {
 func getWalletBalance(c *gin.Context) {
 	wid := c.Param("wid")
 
-	log.Info(balanceReqText + wid)
+	logrus.Info(balanceReqText + wid)
 
 	balance := getDbWalletBalance(wid)
 

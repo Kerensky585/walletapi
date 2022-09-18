@@ -95,7 +95,7 @@ func creditDbWallet(walletId string, amount decimal.Decimal) {
 		} else {
 			var creditBalance = currentWallet.Balance.Add(amount)
 			DbConn.Model(&currentWallet).Update("Balance", creditBalance)
-			logrus.Info("Wallet ballance updated: ", creditBalance)
+			logrus.Info("Wallet credited, balance updated: ", creditBalance)
 
 		}
 	} else {
@@ -125,7 +125,7 @@ func debitDbWallet(walletId string, amount decimal.Decimal) {
 			if ValidateDebitBalance(amount, currentWallet.Balance) {
 				var debitBalance = currentWallet.Balance.Sub(amount)
 				DbConn.Model(&currentWallet).Update("Balance", debitBalance)
-				logrus.Info("Wallet ballance updated: ", debitBalance)
+				logrus.Info("Wallet debited, balance updated: ", debitBalance)
 			} else {
 				logrus.Error("Unable to process transation as it would result in negative balance: ")
 			}
