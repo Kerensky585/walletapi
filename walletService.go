@@ -101,8 +101,6 @@ func postDebitAccount(c *gin.Context) {
 func getWalletBalance(c *gin.Context) {
 	wid := c.Param("wid")
 
-	logrus.Info(balanceReqText + wid)
-
 	balance := getDbWalletBalance(wid)
 
 	//TODO: mm bit hacky but can can think of a better check later
@@ -110,6 +108,8 @@ func getWalletBalance(c *gin.Context) {
 		c.SecureJSON(http.StatusOK, balance)
 		return
 	}
+
+	logrus.Info(balanceReqText + wid + "Balance: " + balance.String())
 
 	c.SecureJSON(http.StatusNotFound, gin.H{"message": "wallet with " + wid + " not found!"})
 
