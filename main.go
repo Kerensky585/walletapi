@@ -9,12 +9,9 @@ func main() {
 	if InitEndPoints() {
 
 		//Create DB connection and Control, see appsetting.json
-		DbFileConnection("appsettings.json") //open the File DB
-
-		//utest := test.Test1()
-
-		//test class
-		Router.Run("localhost:8080")
+		if DbFileConnection("appsettings.json") {
+			Router.Run("localhost:8080")
+		}
 	}
 }
 */

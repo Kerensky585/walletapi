@@ -1,0 +1,1 @@
+curl http://localhost:8080/api/v1/wallets/debit --include --header "Content-Type: application/json" --request "POST" --data "{\"wid\": \"1\" ,\"amount\": \"100.00\"}"
