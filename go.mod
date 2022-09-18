@@ -8,8 +8,6 @@ require (
 	github.com/sirupsen/logrus v1.9.0
 	gorm.io/driver/sqlite v1.3.6
 	gorm.io/gorm v1.23.8
-
-	walletapi v1.0.0
 )
 
 require (
@@ -34,8 +32,4 @@ require (
 	golang.org/x/text v0.3.6 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-)
-
-replace (
-	walletapi v1.0.0 => ./walletapi
 )
