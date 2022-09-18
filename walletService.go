@@ -103,7 +103,7 @@ func getWalletBalance(c *gin.Context) {
 
 	balance := getDbWalletBalance(wid)
 
-	logrus.Info(balanceReqText + wid + "Balance: " + balance.String())
+	logrus.Info(balanceReqText + wid + ", Balance: " + balance.String())
 
 	//TODO: mm bit hacky but can can think of a better check later
 	if !balance.IsNegative() {
