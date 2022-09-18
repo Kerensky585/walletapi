@@ -1,9 +1,9 @@
 package walletapi
 
 type settings struct {
-	remoteDb   bool   `json:"remoteDb"`
-	dbLocation string `json:"dblocation"`
-	bbUser     string `json:"dbUser"`
-	bbPass     string `json:"dbPass"`
-	otherStuff string `json:"otherStuff"`
+	RemoteDb   bool   `json:"remoteDb"`
+	DbLocation string `json:"dblocation"`
+	DbUser     string `json:"dbUser"`
+	DbPass     string `json:"dbPass"`
+	OtherStuff string `json:"otherStuff"`
 }

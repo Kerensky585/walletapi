@@ -1,4 +1,4 @@
-module github.com/Kerensky585/walletapi
+module walletapi
 
 go 1.19
 

@@ -16,8 +16,9 @@ var (
 	DbConn *gorm.DB
 )
 
-// open a connection using selected database source
-func DbConnect(settingsJson string) bool {
+// Read stting file specified and openthe DB connection of File or Remote DB
+// If tables do not exist in the DB file provided create them.
+func DbController(settingsJson string) bool {
 
 	var dbConnInitialised = false
 
@@ -30,15 +31,11 @@ func DbConnect(settingsJson string) bool {
 
 	byteValue, _ := io.ReadAll(jsonFile)
 	fmt.Println("Successfully Opened settings.json")
-
 	var settings settings
-
 	json.Unmarshal(byteValue, &settings)
 
 	defer jsonFile.Close()
-	//var fileName string = "playerwallets.db"
 
-	//TODO: specify flag check for file or remote DB connection here as well.
 	//Could turn this into a switch to handle lots iff different DB conneciton types here
 	if settings.RemoteDb {
 		db, err := gorm.Open(sqlite.Open(settings.DbLocation), &gorm.Config{})
