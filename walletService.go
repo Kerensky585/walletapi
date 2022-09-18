@@ -21,6 +21,9 @@ var (
 // Initialise end point routes
 func InitEndPoints() (success bool) {
 
+	log.SetOutput(logOutFile)
+	log.SetLevel(log.DebugLevel)
+
 	Router = gin.Default()
 
 	v1 := Router.Group("/api/v1")
@@ -41,10 +44,6 @@ func InitEndPoints() (success bool) {
 	}
 
 	logOutFile.WriteString("File is working fine it's the logger\n")
-
-	log.SetOutput(logOutFile)
-
-	log.SetLevel(log.DebugLevel)
 
 	return endPointsInitialised
 }
