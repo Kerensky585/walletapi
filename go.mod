@@ -1,4 +1,4 @@
-module example/web-service-gin
+module walletapi
 
 go 1.19
 
