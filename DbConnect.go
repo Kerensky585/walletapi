@@ -17,7 +17,9 @@ var (
 )
 
 // open a connection using selected database source
-func DbFileConnection(settingsJson string) {
+func DbController(settingsJson string) bool {
+
+	var dbConnInitialised = false
 
 	jsonFile, err := os.Open(settingsJson)
 
@@ -38,20 +40,25 @@ func DbFileConnection(settingsJson string) {
 
 	//TODO: specify flag check for file or remote DB connection here as well.
 	//Could turn this into a switch to handle lots iff different DB conneciton types here
-	if settings.remoteDb {
-		db, err := gorm.Open(sqlite.Open(settings.dbLocation), &gorm.Config{})
+	if settings.RemoteDb {
+		db, err := gorm.Open(sqlite.Open(settings.DbLocation), &gorm.Config{})
 		DbConn = db
 
 		if err != nil {
 			panic("Critical error: unable to open or connect to the Database.")
 		}
+
+		dbConnInitialised = true
+
 	} else {
-		db, err := gorm.Open(sqlite.Open(settings.dbLocation), &gorm.Config{})
+		db, err := gorm.Open(sqlite.Open(settings.DbLocation), &gorm.Config{})
 		DbConn = db
 
 		if err != nil {
 			panic("Critical error: unable to open or connect to the Database.")
 		}
+
+		dbConnInitialised = true
 	}
 
 	//create the schema if the table doesnt exist for our file DB
@@ -69,6 +76,7 @@ func DbFileConnection(settingsJson string) {
 		logrus.Println("DB user table and schema already initialised.")
 	}
 
+	return dbConnInitialised
 }
 
 // Call DB and credit the wallet for {walletId}
