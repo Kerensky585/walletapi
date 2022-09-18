@@ -1,0 +1,33 @@
+File is working fine it's the logger
+File is working fine it's the logger
+File is working fine it's the logger
+time="2022-09-17T17:32:27+01:00" level=info msg="DB wallet table and schema already initialised."
+time="2022-09-17T17:32:27+01:00" level=info msg="DB user table and schema already initialised."
+File is working fine it's the logger
+time="2022-09-17T17:33:00+01:00" level=info msg="DB wallet table and schema already initialised."
+time="2022-09-17T17:33:00+01:00" level=info msg="DB user table and schema already initialised."
+time="2022-09-17T17:33:03+01:00" level=info msg="Balance requested for wallet ID: "
+time="2022-09-17T17:33:03+01:00" level=info msg="Balance requested for wallet ID: "
+time="2022-09-17T17:33:04+01:00" level=info msg="Balance requested for wallet ID: "
+time="2022-09-17T17:33:05+01:00" level=info msg="Balance requested for wallet ID: "
+time="2022-09-17T17:33:05+01:00" level=info msg="Balance requested for wallet ID: "
+File is working fine it's the logger
+time="2022-09-17T17:33:34+01:00" level=info msg="DB wallet table and schema already initialised."
+time="2022-09-17T17:33:34+01:00" level=info msg="DB user table and schema already initialised."
+time="2022-09-17T17:33:35+01:00" level=info msg="Balance requested for wallet ID: 1"
+time="2022-09-17T17:33:36+01:00" level=info msg="Balance requested for wallet ID: 1"
+time="2022-09-17T17:33:36+01:00" level=info msg="Balance requested for wallet ID: 1"
+time="2022-09-17T17:33:37+01:00" level=info msg="Balance requested for wallet ID: 1"
+time="2022-09-17T17:33:38+01:00" level=info msg="Balance requested for wallet ID: 1"
+time="2022-09-17T17:33:42+01:00" level=info msg="Balance requested for wallet ID: 2"
+time="2022-09-17T17:33:42+01:00" level=error msg="record not found"
+time="2022-09-17T17:34:49+01:00" level=info msg="Wallet ballance updated: 800"
+File is working fine it's the logger
+time="2022-09-17T17:45:01+01:00" level=info msg="DB wallet table and schema already initialised."
+time="2022-09-17T17:45:01+01:00" level=info msg="DB user table and schema already initialised."
+File is working fine it's the logger
+time="2022-09-17T18:56:38+01:00" level=info msg="DB wallet table and schema already initialised."
+time="2022-09-17T18:56:38+01:00" level=info msg="DB user table and schema already initialised."
+File is working fine it's the logger
+time="2022-09-18T08:28:13+01:00" level=info msg="DB wallet table and schema already initialised."
+time="2022-09-18T08:28:13+01:00" level=info msg="DB user table and schema already initialised."
