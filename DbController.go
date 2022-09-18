@@ -17,7 +17,7 @@ var (
 )
 
 // open a connection using selected database source
-func DbController(settingsJson string) bool {
+func DbConnect(settingsJson string) bool {
 
 	var dbConnInitialised = false
 
