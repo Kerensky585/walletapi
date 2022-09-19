@@ -84,7 +84,9 @@ func creditDbWallet(walletId string, amount decimal.Decimal) {
 		return
 	}
 
-	if ValidatePositiveAmount(amount) {
+	checkAmount, err := ValidatePositiveAmount(amount)
+
+	if checkAmount && err == nil {
 
 		var currentWallet Wallet
 
@@ -111,7 +113,9 @@ func debitDbWallet(walletId string, amount decimal.Decimal) {
 		return
 	}
 
-	if ValidatePositiveAmount(amount) {
+	checkAmount, err := ValidatePositiveAmount(amount)
+
+	if checkAmount && err == nil {
 
 		var currentWallet Wallet
 
@@ -122,7 +126,8 @@ func debitDbWallet(walletId string, amount decimal.Decimal) {
 			logrus.Errorln(queryResult.Error)
 		} else {
 
-			if ValidateDebitBalance(amount, currentWallet.Balance) {
+			debitOk, err := ValidateDebitBalance(amount, currentWallet.Balance)
+			if debitOk && err == nil {
 				var debitBalance = currentWallet.Balance.Sub(amount)
 				DbConn.Model(&currentWallet).Update("Balance", debitBalance)
 				logrus.Info("Wallet debited, balance updated: ", debitBalance)

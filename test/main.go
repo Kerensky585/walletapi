@@ -1,4 +1,4 @@
-package walletapi
+package test
 
 // TODO this  would not be required in a library module!!!! used for testing here to init endpoints, open the DB connection using settings.
 /*
