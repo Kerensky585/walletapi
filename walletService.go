@@ -30,8 +30,8 @@ func InitEndPoints() (success bool) {
 	{
 		v1.GET("/wallets/:wid/balance", getWalletBalance)
 
-		v1.POST("/wallets/credit", postCreditAccount)
-		v1.POST("/wallets/debit", postDebitAccount)
+		v1.POST("/wallets/:wid/credit", postCreditAccount)
+		v1.POST("/wallets/:wid/debit", postDebitAccount)
 	}
 
 	//In production we would allow specifying the log file and path via settings, this is for simplicity here
