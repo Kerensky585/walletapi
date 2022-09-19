@@ -6,7 +6,7 @@ import (
 )
 
 // Struct to represent a very basic wallet Entity - use to create out schema
-type wallet struct {
+type Wallet struct {
 	gorm.Model
 	WID     string          `json:"wid"`
 	UID     string          `json:"name"`

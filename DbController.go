@@ -60,7 +60,7 @@ func DbController(settingsJson string) bool {
 
 	//create the schema if the table doesnt exist for our file DB
 	if !DbConn.Migrator().HasTable("wallets") {
-		DbConn.AutoMigrate(&wallet{})
+		DbConn.AutoMigrate(&Wallet{})
 	} else {
 		logrus.Println("DB wallet table and schema already initialised.")
 	}
@@ -84,9 +84,11 @@ func creditDbWallet(walletId string, amount decimal.Decimal) {
 		return
 	}
 
-	if ValidatePositiveAmount(amount) {
+	checkAmount, err := ValidatePositiveAmount(amount)
 
-		var currentWallet wallet
+	if checkAmount && err == nil {
+
+		var currentWallet Wallet
 
 		queryResult := DbConn.First(&currentWallet, "w_id = ?", walletId)
 
@@ -111,18 +113,21 @@ func debitDbWallet(walletId string, amount decimal.Decimal) {
 		return
 	}
 
-	if ValidatePositiveAmount(amount) {
+	checkAmount, err := ValidatePositiveAmount(amount)
 
-		var currentWallet wallet
+	if checkAmount && err == nil {
 
-		queryResult := DbConn.Model(&wallet{}).Where("w_id = ?", walletId).First(&currentWallet)
+		var currentWallet Wallet
+
+		queryResult := DbConn.Model(&Wallet{}).Where("w_id = ?", walletId).First(&currentWallet)
 
 		if queryResult.Error != nil {
 			//do some error handling and logging
 			logrus.Errorln(queryResult.Error)
 		} else {
 
-			if ValidateDebitBalance(amount, currentWallet.Balance) {
+			debitOk, err := ValidateDebitBalance(amount, currentWallet.Balance)
+			if debitOk && err == nil {
 				var debitBalance = currentWallet.Balance.Sub(amount)
 				DbConn.Model(&currentWallet).Update("Balance", debitBalance)
 				logrus.Info("Wallet debited, balance updated: ", debitBalance)
@@ -138,10 +143,10 @@ func debitDbWallet(walletId string, amount decimal.Decimal) {
 // Return specified wallet balance - yeh need error checking here :/
 func getDbWalletBalance(walletId string) decimal.Decimal {
 
-	var currentWallet wallet
+	var currentWallet Wallet
 	var balance decimal.Decimal
 
-	queryResult := DbConn.Model(&wallet{}).Where("w_id = ?", walletId).First(&currentWallet)
+	queryResult := DbConn.Model(&Wallet{}).Where("w_id = ?", walletId).First(&currentWallet)
 
 	//check if we had any error
 	if queryResult.Error != nil {
